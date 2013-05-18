@@ -1,4 +1,4 @@
-Gob and Reveler, Go Broject Management
+Gob and Reveler: Go Broject Management
 =============================
 
 Gob will help you start and manage your go project. It will 
