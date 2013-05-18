@@ -1,3 +1,7 @@
+![Gob Bluth](http://i.imgur.com/r04Kb5X.jpg)
+
+> Gob: You know, I sorta thought my contribution... could be a magic show! 
+
 Gob and Reveler: Go Broject Management
 =============================
 
@@ -8,10 +12,6 @@ Gob will help you start and manage your go project. It will
  * add a gitignore to a new project.
 
 Reveler will do all that and more. It will create a new project, get revel, build it and set the GOPATH.
-
-![Gob Bluth](http://i.imgur.com/r04Kb5X.jpg)
-
-> Illusions Michael, 
 
 Installation
 ------------
