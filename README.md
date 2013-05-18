@@ -1,4 +1,4 @@
-![Gob Bluth](http://i.imgur.com/r04Kb5X.jpg)
+![Gob Bluth](http://i.imgur.com/xyvffqA.jpg)
 
 > Gob: You know, I sorta thought my contribution... could be a magic show! 
 
