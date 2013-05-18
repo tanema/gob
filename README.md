@@ -64,7 +64,7 @@ Use:
   reveler help     Show this message
   reveler init     Create a .goproj file in the pwd, marking it as the root of a project.
   reveler new      Creates a new directory with a .goproj and .gitignore file in it.
-                   It the gets revel and builds it.
+                   It then gets revel and builds it.
   reveler run      Will run the revel project.
   reveler version  Displays version Number.
 
