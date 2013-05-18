@@ -31,7 +31,7 @@ Installation
 2. Add the `bin/` folder to your PATH
 
    ```bash
-   echo "[[ -s \"$PWD/gob.sh\" ]] && source \"$PWD/gob.sh\""  >> ~/.bashrc 
+   echo "[[ -s \"$PWD/gob.sh\" ]] && source \"$PWD/gob.sh\" # Load gob"  >> ~/.bashrc 
    ```
 
 3. Optionaly reload your bashrc
