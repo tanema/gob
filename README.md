@@ -9,7 +9,7 @@ Gob will help you start and manage your go project. It will
 
 Reveler will do all that and more. It will create a new project, get revel, build it and set the GOPATH.
 
-![Gob Bluth](http://i.imgur.com/xzy4ys1.jpg)
+![Gob Bluth](http://i.imgur.com/r04Kb5X.jpg)
 
 > Illusions Michael, 
 
