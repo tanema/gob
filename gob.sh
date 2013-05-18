@@ -77,9 +77,7 @@ gob (){
         echo "Cannot (or will not) make a go project inside another go project"
       fi
       ;;
-    "version" )
-      echo $GOB_VERSION
-      ;;
+    "version" ) echo $GOB_VERSION;;
     "program" )
         echo "Gob's Program: Y/N?"
         echo "?"
@@ -92,9 +90,7 @@ gob (){
             ;;
         esac
       ;;
-    * )
-      gob help
-      ;;
+    * ) gob help;;
     esac
 }
 
@@ -121,9 +117,7 @@ reveler () {
       echo "  reveler new myproj"
       echo "" 
       ;;
-    "init" )
-      gob init
-      ;;
+    "init" ) gob init;;
     "new" | "n")
       gob new $2 && cd $2
       echo "Getting revel"
@@ -135,16 +129,12 @@ reveler () {
     "run" | "r" | "server" | "s" )
       # run a revel app form the goproj root
       if [ "x$GOPATH" = "x" ]; then
-        revel run ${GOPATH##*/}
-      else
         echo "Oops, you are not in a project directory"
+      else
+        revel run ${GOPATH##*/}
       fi
       ;;
-    "version" )
-      echo $GOB_VERSION
-      ;;
-    * )
-      reveler help
-      ;;
-    esac
+    "version" ) echo $GOB_VERSION;;
+    * ) reveler help;;
+  esac
 }
