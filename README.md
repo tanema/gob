@@ -1,4 +1,4 @@
-![Gob Bluth](http://i.imgur.com/r04Kb5X.jpg)
+![Gob Bluth](http://i.imgur.com/xyvffqA.jpg)
 
 > Gob: You know, I sorta thought my contribution... could be a magic show! 
 
@@ -8,13 +8,14 @@ Gob and Reveler: Go Broject Management
 Gob will help you start and manage your go project. It will 
 
  * set the GOPATH to the root of the project when you cd into the project.
- * with the GOPATH set to the project, you can easily commit your library to source control.
- * add a gitignore to a new project.
+ * with the GOPATH set to the project, you can easily commit your project libraries to source control.
+ * add a go specific gitignore to a new project.
 
 Reveler will do all that and more. It will create a new project, get revel, build it and set the GOPATH.
 
 Installation
 ------------
+*prerequisites: Go is installed and GOROOT is set*
 
 1. Clone the repository
 
