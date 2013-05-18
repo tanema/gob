@@ -1,4 +1,13 @@
-# gob: go broject manager
+# Gob and Reveler, Go/Revel Project Management
+# Implemented as a bash function
+# To use source this file from your bash profile
+#
+# Implemented by Tim Anema <timanema@gmail.com>
+
+# Auto detect the NVM_DIR
+if [ ! -d "$GOB_DIR" ]; then
+  export GOB_DIR=$(cd $(dirname ${BASH_SOURCE[0]:-$0}) && pwd)
+fi
 
 GOB_VERSION="0.1.0"
 
@@ -33,8 +42,19 @@ gob (){
 
   case $1 in
     "help")
+      echo ""
       echo "Gob"
-      echo "========="
+      echo ""
+      echo "Use:"
+      echo "  gob help     Show this message"
+      echo "  gob init     Create a .goproj file in the pwd, marking it as the root of a project."
+      echo "  gob new      Creates a new directory with a .goproj and .gitignore file in it."
+      echo "  gob version  Displays version Number."
+      echo ""
+      echo "Example:"
+      echo "  gob init"
+      echo "  gob new myproj"
+      echo ""
       ;;
     "init")
       if [ "x$GOPATH" = "x" ]; then
@@ -51,11 +71,10 @@ gob (){
         echo "Cannot (or will not) make a go project inside another go project"
       fi
       ;;
-    "new")
+    "new" | "n")
       # create directory with .goproj in it already and .gitignore
       if [ "x$GOPATH" = "x" ]; then
-        mkdir $2 && touch $2/.goproj
-        echo "Created $2"
+        mkdir $2 && touch $2/.goproj && cp $GOB_DIR/Go.gitignore $2/.gitignore && echo "Created $2"
       else
         echo "Cannot (or will not) make a go project inside another go project"
       fi
@@ -77,8 +96,20 @@ reveler () {
 
   case $1 in
     "help")
+      echo ""
       echo "Reveler"
-      echo "========="
+      echo ""
+      echo "Use:"
+      echo "  reveler help     Show this message"
+      echo "  reveler init     Create a .goproj file in the pwd, marking it as the root of a project."
+      echo "  reveler new      Creates a new directory with a .goproj and .gitignore file in it."
+      echo "  reveler run      Will run the revel project."
+      echo "  reveler version  Displays version Number."
+      echo ""
+      echo "Example:"
+      echo "  reveler init"
+      echo "  reveler new myproj"
+      echo "" 
       ;;
     "init" )
       gob init
