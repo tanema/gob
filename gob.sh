@@ -103,6 +103,7 @@ reveler () {
       echo "  reveler help     Show this message"
       echo "  reveler init     Create a .goproj file in the pwd, marking it as the root of a project."
       echo "  reveler new      Creates a new directory with a .goproj and .gitignore file in it."
+      echo "                   It the gets revel and builds it."
       echo "  reveler run      Will run the revel project."
       echo "  reveler version  Displays version Number."
       echo ""
