@@ -3,13 +3,12 @@
 # To use source this file from your bash profile
 #
 # Implemented by Tim Anema <timanema@gmail.com>
+GOB_VERSION="0.1.0"
 
-# Auto detect the NVM_DIR
+# Auto detect the GOB_DIR
 if [ ! -d "$GOB_DIR" ]; then
   export GOB_DIR=$(cd $(dirname ${BASH_SOURCE[0]:-$0}) && pwd)
 fi
-
-GOB_VERSION="0.1.0"
 
 cd (){
   builtin cd $@
