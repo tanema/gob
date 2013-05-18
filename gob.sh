@@ -82,6 +82,18 @@ gob (){
     "version" )
       echo $GOB_VERSION
       ;;
+    "program" )
+        echo "Gob's Program: Y/N?"
+        echo "?"
+        read  choice
+        case "$choice" in 
+          y|Y ) 
+            while [[ 1 = 1 ]]; do
+              printf "Penus "
+            done
+            ;;
+        esac
+      ;;
     * )
       gob help
       ;;
