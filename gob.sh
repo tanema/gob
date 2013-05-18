@@ -36,8 +36,7 @@ gob_get_proj_dir() {
 
 gob (){
   if [ $# -lt 1 ]; then
-    gob help
-    return
+    gob help && return
   fi 
 
   case $1 in
@@ -102,8 +101,7 @@ gob (){
 
 reveler () {
   if [ $# -lt 1 ]; then
-    reveler help
-    return
+    reveler help && return
   fi 
 
   case $1 in
