@@ -108,7 +108,7 @@ reveler () {
       echo "  reveler new,n     Creates a new directory with a .goproj and .gitignore file in it."
       echo "                    It then gets revel and builds it."
       echo "  reveler run,r     Will run the revel project."
-      echo "  reveler debug,d   Will open a gdb console with the project ready to run."
+      echo "  reveler debug,d   Will build the app and open a gdb console with the project ready to run."
       echo "  reveler version   Displays version Number."
       echo ""
       echo "Example:"
@@ -138,8 +138,15 @@ reveler () {
       if [ "x$GOPATH" = "x" ]; then
         echo "Oops, you are not in a project directory"
       else
+        echo "####################################################"
+        echo "#                     Warning                      #"
+        echo "# -------------------------------------------------#"
+        echo "# This will be a built version of your app, any    #"
+        echo "# changes will not be reflected in debug, revel    #"
+        echo "# does not support this at the moment.             #"
+        echo "####################################################"
         local project_name=${GOPATH##*/}
-        revel build $project_name $project_name/tmp/$project_name > /dev/null && gdb --args $GOPATH/bin/$project_name -importPath $project_name -srcPath "$GOPATH/src" -runMode dev
+        revel clean test &> /dev/null && revel build $project_name $GOPATH/tmp/$project_name  && (echo r ; cat) | gdb --args $GOPATH/bin/$project_name -importPath $project_name -srcPath "$GOPATH/src" -runMode dev
       fi
       ;;
     "version" ) echo $GOB_VERSION;;
