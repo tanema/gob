@@ -50,7 +50,7 @@ Gob
 Use:
   gob help     Show this message
   gob init     Create a .goproj file in the pwd, marking it as the root of a project.
-  gob new      Creates a new directory with a .goproj and .gitignore file in it.
+  gob new,n    Creates a new directory with a .goproj and .gitignore file in it.
   gob version  Displays version Number.
 
 Example:
@@ -62,13 +62,13 @@ Example:
 Reveler
 
 Use:
-  reveler help          Show this message
-  reveler init          Create a .goproj file in the pwd, marking it as the root of a project.
-  reveler new           Creates a new directory with a .goproj and .gitignore file in it.
-                        It then gets revel and builds it.
-  reveler run           Will run the revel project.
-  reveler console | c   Will open a gdb console with the project ready to run.
-  reveler version       Displays version Number.
+  reveler help      Show this message
+  reveler init      Create a .goproj file in the pwd, marking it as the root of a project.
+  reveler new,n     Creates a new directory with a .goproj and .gitignore file in it.
+                    It then gets revel and builds it.
+  reveler run,r     Will run the revel project.
+  reveler debug,d   Will open a gdb console with the project ready to run.
+  reveler version   Displays version Number.
 
 Example:
   reveler init

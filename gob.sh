@@ -1,9 +1,9 @@
 # Gob and Reveler, Go/Revel Project Management
 # Implemented as a bash function
-# To use source this file from your bash profile
+# To use, source this file from your bash profile
 #
 # Implemented by Tim Anema <timanema@gmail.com>
-GOB_VERSION="0.1.0"
+GOB_VERSION="0.1.1"
 
 # Auto detect the GOB_DIR
 if [ ! -d "$GOB_DIR" ]; then
@@ -46,7 +46,7 @@ gob (){
       echo "Use:"
       echo "  gob help     Show this message"
       echo "  gob init     Create a .goproj file in the pwd, marking it as the root of a project."
-      echo "  gob new      Creates a new directory with a .goproj and .gitignore file in it."
+      echo "  gob new,n    Creates a new directory with a .goproj and .gitignore file in it."
       echo "  gob version  Displays version Number."
       echo ""
       echo "Example:"
@@ -103,13 +103,13 @@ reveler () {
       echo "Reveler"
       echo ""
       echo "Use:"
-      echo "  reveler help          Show this message"
-      echo "  reveler init          Create a .goproj file in the pwd, marking it as the root of a project."
-      echo "  reveler new | n       Creates a new directory with a .goproj and .gitignore file in it."
-      echo "                        It then gets revel and builds it."
-      echo "  reveler run | r       Will run the revel project."
-      echo "  reveler console | c   Will open a gdb console with the project ready to run."
-      echo "  reveler version       Displays version Number."
+      echo "  reveler help      Show this message"
+      echo "  reveler init      Create a .goproj file in the pwd, marking it as the root of a project."
+      echo "  reveler new,n     Creates a new directory with a .goproj and .gitignore file in it."
+      echo "                    It then gets revel and builds it."
+      echo "  reveler run,r     Will run the revel project."
+      echo "  reveler debug,d   Will open a gdb console with the project ready to run."
+      echo "  reveler version   Displays version Number."
       echo ""
       echo "Example:"
       echo "  reveler init"
@@ -133,7 +133,7 @@ reveler () {
         revel run ${GOPATH##*/}
       fi
       ;;
-    "console" | "c" )
+    "debug" | "d" |"console" | "c" )
       # run a revel console from the goproj root
       if [ "x$GOPATH" = "x" ]; then
         echo "Oops, you are not in a project directory"
