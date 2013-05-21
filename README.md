@@ -67,7 +67,8 @@ Use:
   reveler new,n     Creates a new directory with a .goproj and .gitignore file in it.
                     It then gets revel and builds it.
   reveler run,r     Will run the revel project.
-  reveler debug,d   Will open a gdb console with the project ready to run.
+  reveler debug,d   Will open a gdb console with the project running (NOTE: This builds before 
+                    it runs so any changes to the code will not be refelected in the gdb session).
   reveler version   Displays version Number.
 
 Example:
