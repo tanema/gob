@@ -61,9 +61,7 @@ gob (){
         echo "Continue (y/n)?"
         read  choice
         case "$choice" in 
-          y|Y ) 
-            touch .goproj && echo "Created .goproj"
-            ;;
+          y|Y ) touch .goproj && echo "Created .goproj" ;;
         esac
       else
         echo "Cannot (or will not) make a go project inside another go project"
@@ -105,12 +103,13 @@ reveler () {
       echo "Reveler"
       echo ""
       echo "Use:"
-      echo "  reveler help     Show this message"
-      echo "  reveler init     Create a .goproj file in the pwd, marking it as the root of a project."
-      echo "  reveler new      Creates a new directory with a .goproj and .gitignore file in it."
-      echo "                   It then gets revel and builds it."
-      echo "  reveler run      Will run the revel project."
-      echo "  reveler version  Displays version Number."
+      echo "  reveler help          Show this message"
+      echo "  reveler init          Create a .goproj file in the pwd, marking it as the root of a project."
+      echo "  reveler new | n       Creates a new directory with a .goproj and .gitignore file in it."
+      echo "                        It then gets revel and builds it."
+      echo "  reveler run | r       Will run the revel project."
+      echo "  reveler console | c   Will open a gdb console with the project ready to run."
+      echo "  reveler version       Displays version Number."
       echo ""
       echo "Example:"
       echo "  reveler init"
@@ -127,11 +126,20 @@ reveler () {
       revel new $2 && cd src/$2
       ;;
     "run" | "r" | "server" | "s" )
-      # run a revel app form the goproj root
+      # run a revel app from the goproj root
       if [ "x$GOPATH" = "x" ]; then
         echo "Oops, you are not in a project directory"
       else
         revel run ${GOPATH##*/}
+      fi
+      ;;
+    "console" | "c" )
+      # run a revel console from the goproj root
+      if [ "x$GOPATH" = "x" ]; then
+        echo "Oops, you are not in a project directory"
+      else
+        local project_name=${GOPATH##*/}
+        revel build $project_name $project_name/tmp/$project_name > /dev/null && gdb --args $GOPATH/bin/$project_name -importPath $project_name -srcPath "$GOPATH/src" -runMode dev
       fi
       ;;
     "version" ) echo $GOB_VERSION;;
