@@ -10,13 +10,18 @@ if [ ! -d "$GOB_DIR" ]; then
   export GOB_DIR=$(cd $(dirname ${BASH_SOURCE[0]:-$0}) && pwd)
 fi
 
+if [ "x$GOPATH" != "x" ]; then
+  # settings for if GOPATH is already set maybe make it only exclusive if this not set.
+fi
+
 cd (){
   builtin cd $@
-  if [ "x$GOPATH" = "x" ]; then
+  if [ "x$GOPROJ_PATH" = "x" ]; then
     gob_get_proj_dir
-  elif [[ $PWD != $GOPATH* ]]; then
+  elif [[ $PWD != $GOPROJ_PATH* ]]; then
     export PATH=$(echo ${PATH#$GOPATH/bin:})
     export GOPATH=""
+    export GOPROJ_PATH="" 
     gob_get_proj_dir
   fi
 }
@@ -25,6 +30,7 @@ gob_get_proj_dir() {
   local dir="$(pwd)"
   while [[ $dir != "/" ]]; do
     if [[ -e "${dir}/.goproj" ]]; then
+      export GOPROJ_PATH="${dir}" 
       export GOPATH="${dir}"
       export PATH=$GOPATH/bin:$PATH
       break
@@ -32,6 +38,8 @@ gob_get_proj_dir() {
     dir=$(dirname "${dir}")
   done
 }
+
+gob_get_proj_dir
 
 gob (){
   if [ $# -lt 1 ]; then
@@ -55,7 +63,7 @@ gob (){
       echo ""
       ;;
     "init")
-      if [ "x$GOPATH" = "x" ]; then
+      if [ "x$GOPROJ_PATH" = "x" ]; then
         # add .goproj to current directory for use with gob
         echo "Warning, only do this in the root of your project directory"
         echo "Continue (y/n)?"
@@ -69,7 +77,7 @@ gob (){
       ;;
     "new" | "n")
       # create directory with .goproj in it already and .gitignore
-      if [ "x$GOPATH" = "x" ]; then
+      if [ "x$GOPROJ_PATH" = "x" ]; then
         mkdir $2 && touch $2/.goproj && cp $GOB_DIR/Go.gitignore $2/.gitignore && echo "Created $2"
       else
         echo "Cannot (or will not) make a go project inside another go project"
@@ -128,15 +136,15 @@ reveler () {
       ;;
     "run" | "r" | "server" | "s" )
       # run a revel app from the goproj root
-      if [ "x$GOPATH" = "x" ]; then
+      if [ "x$GOPROJ_PATH" = "x" ]; then
         echo "Oops, you are not in a project directory"
       else
-        revel run ${GOPATH##*/}
+        revel run ${GOPROJ_PATH##*/}
       fi
       ;;
     "debug" | "d" |"console" | "c" )
       # run a revel console from the goproj root
-      if [ "x$GOPATH" = "x" ]; then
+      if [ "x$GOPROJ_PATH" = "x" ]; then
         echo "Oops, you are not in a project directory"
       else
         echo "####################################################"
@@ -146,8 +154,8 @@ reveler () {
         echo "# changes will not be reflected in debug, revel    #"
         echo "# does not support this at the moment.             #"
         echo "####################################################"
-        local project_name=${GOPATH##*/}
-        revel clean test &> /dev/null && revel build $project_name $GOPATH/tmp/$project_name  && (echo r ; cat) | gdb --args $GOPATH/bin/$project_name -importPath $project_name -srcPath "$GOPATH/src" -runMode dev
+        local project_name=${GOPROJ_PATH##*/}
+        revel clean test &> /dev/null && revel build $project_name $GOPROJ_PATH/tmp/$project_name  && (echo r ; cat) | gdb --args $GOPROJ_PATH/bin/$project_name -importPath $project_name -srcPath "$GOPROJ_PATH/src" -runMode dev
       fi
       ;;
     "version" ) echo $GOB_VERSION;;

@@ -15,7 +15,7 @@ Reveler will do all that and more. It will create a new project, get revel, buil
 
 Installation
 ------------
-*prerequisites: Go is installed and GOROOT is set*
+*prerequisites: Go is installed, GOROOT is set, and GOPATH is not set.*
 
 1. Clone the repository
 
@@ -75,3 +75,10 @@ Example:
   reveler init
   reveler new myproj
 ```
+
+TODO
+----------------
+
+I am going to make it so that those who do not wish to use this exlusive type of GOPATH workflow can opt out of it if
+they have the GOPATH set in thier bashrc file.
+
