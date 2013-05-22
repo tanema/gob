@@ -79,6 +79,6 @@ Example:
 TODO
 ----------------
 
-I am going to make it so that those who do not wish to use this exlusive type of GOPATH workflow can opt out of it if
-they have the GOPATH set in thier bashrc file.
+If there are any requests I am willing to make setting the GOPATH and PATH variables opt-out in case
+any of those who use a global GOPATH are interested in the limited functionality this tool still gives them.
 

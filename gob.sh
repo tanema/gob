@@ -10,9 +10,10 @@ if [ ! -d "$GOB_DIR" ]; then
   export GOB_DIR=$(cd $(dirname ${BASH_SOURCE[0]:-$0}) && pwd)
 fi
 
-if [ "x$GOPATH" != "x" ]; then
+#if [ "x$GOPATH" = "x" ]; then
   # settings for if GOPATH is already set maybe make it only exclusive if this not set.
-fi
+  #export GOB_EXCLUSIVE="true"
+#fi
 
 cd (){
   builtin cd $@
@@ -30,9 +31,9 @@ gob_get_proj_dir() {
   local dir="$(pwd)"
   while [[ $dir != "/" ]]; do
     if [[ -e "${dir}/.goproj" ]]; then
-      export GOPROJ_PATH="${dir}" 
       export GOPATH="${dir}"
       export PATH=$GOPATH/bin:$PATH
+      export GOPROJ_PATH="${dir}" 
       break
     fi
     dir=$(dirname "${dir}")
