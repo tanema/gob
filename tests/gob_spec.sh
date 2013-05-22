@@ -62,6 +62,12 @@ else
 fi
 
 echo "changing directories in to a project should set the path gopath and goproj_path"
+gob new test && cd test
+if [ "$GOPATH" != "$PWD" ] || [ "$GOPROJ_PATH" != "$PWD" ] || [ $PATH != $GOPATH* ]; then
+  echo "${red}Failed${end_c}"
+else
+  echo "${green}Passed${end_c}"
+fi
 
-cd ..
+cd ../..
 rm -rf tmp
