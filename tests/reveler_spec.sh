@@ -9,7 +9,7 @@ mkdir "tmp"
 cd tmp
 printf "reveler help should show message ..."
 if [[ "x$(reveler help)" = "x" ]]; then
-  echo "${red}Failed with $reveler_help${end_c}"
+  echo "${red}Failed${end_c}"
 else
   echo "${green}Passed${end_c}"
 fi

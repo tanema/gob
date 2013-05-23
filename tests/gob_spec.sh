@@ -9,7 +9,7 @@ mkdir "tmp"
 cd tmp
 printf "gob help should show message ..."
 if [[ "x$(gob help)" = "x" ]]; then
-  echo "${red}Failed with $gob_help${end_c}"
+  echo "${red}Failed${end_c}"
 else
   echo "${green}Passed${end_c}"
 fi
