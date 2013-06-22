@@ -69,6 +69,7 @@ Use:
   reveler run,r     Will run the revel project.
   reveler debug,d   Will open a gdb console with the project running (NOTE: This builds before 
                     it runs so any changes to the code will not be refelected in the gdb session).
+  reveler package   Ths will package up your project without having to specify the path
   reveler version   Displays version Number.
 
 Example:

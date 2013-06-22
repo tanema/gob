@@ -119,6 +119,7 @@ reveler () {
       echo "  reveler run,r     Will run the revel project."
       echo "  reveler debug,d   Will build the app and open a gdb console with the project running (NOTE: This builds before"
       echo "                    it runs so any changes to the code will not be refelected in the gdb session)."
+      echo "  reveler package   Ths will package up your project without having to specify the path"
       echo "  reveler version   Displays version Number."
       echo ""
       echo "Example:"
@@ -141,6 +142,14 @@ reveler () {
         echo "Oops, you are not in a project directory"
       else
         revel run ${GOPROJ_PATH##*/}
+      fi
+      ;;
+    "package" | "p" )
+      # run a revel app from the goproj root
+      if [ "x$GOPROJ_PATH" = "x" ]; then
+        echo "Oops, you are not in a project directory"
+      else
+        revel package ${GOPROJ_PATH##*/}
       fi
       ;;
     "debug" | "d" |"console" | "c" )
