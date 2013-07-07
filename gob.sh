@@ -84,6 +84,18 @@ gob (){
         echo "Cannot (or will not) make a go project inside another go project"
       fi
       ;;
+    "sub" )
+      if [ "x$GOPROJ_PATH" = "x" ]; then
+        echo "Oops. You are not in a project directory"
+      else
+        for i in $(ls -d $GOPATH/**/); do
+          if [ -d "$i".git ]; then
+            echo "adding submodule: $i"
+            git submodule add $i 
+          fi
+        done
+      fi
+      ;;
     "version" ) echo $GOB_VERSION;;
     "program" )
         echo "Gob's Program: Y/N?"
@@ -128,6 +140,7 @@ reveler () {
       echo "" 
       ;;
     "init" ) gob init;;
+    "sub" ) gob sub;;
     "new" | "n")
       gob new $2 && cd $2
       echo "Getting revel"
