@@ -131,7 +131,7 @@ reveler () {
     "new" | "n")
       gob new $2 && cd $2
       echo "Getting revel"
-      go get github.com/robfig/revel || { echo 'go get failed' ; return 1; }
+      go get github.com/robfig/revel/revel || { echo 'go get failed' ; return 1; }
       revel new $2 && cd src/$2
       ;;
     "run" | "r" | "server" | "s" )
