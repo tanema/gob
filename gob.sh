@@ -56,6 +56,7 @@ gob (){
       echo "  gob help     Show this message"
       echo "  gob init     Create a .goproj file in the pwd, marking it as the root of a project."
       echo "  gob new,n    Creates a new directory with a .goproj and .gitignore file in it."
+      echo "  gob sub      iterate through the src and add in all the submodules automatically"
       echo "  gob version  Displays version Number."
       echo ""
       echo "Example:"
@@ -79,7 +80,12 @@ gob (){
     "new" | "n")
       # create directory with .goproj in it already and .gitignore
       if [ "x$GOPROJ_PATH" = "x" ]; then
-        mkdir $2 && touch $2/.goproj && cp $GOB_DIR/Go.gitignore $2/.gitignore && echo "Created $2"
+        if [ "x$2" = "x" ]; then
+          echo "new requires a name"
+          return 1
+        else
+          mkdir $2 && touch $2/.goproj && cp $GOB_DIR/Go.gitignore $2/.gitignore && echo "Created $2"
+        fi
       else
         echo "Cannot (or will not) make a go project inside another go project"
       fi
@@ -88,10 +94,9 @@ gob (){
       if [ "x$GOPROJ_PATH" = "x" ]; then
         echo "Oops. You are not in a project directory"
       else
-        for i in $(ls -d $GOPATH/**/); do
+        for i in $(ls -d $GOPATH/src/**/); do
           if [ -d "$i".git ]; then
-            echo "adding submodule: $i"
-            git submodule add $i 
+            git submodule add $i $i
           fi
         done
       fi
@@ -131,7 +136,8 @@ reveler () {
       echo "  reveler run,r     Will run the revel project."
       echo "  reveler debug,d   Will build the app and open a gdb console with the project running (NOTE: This builds before"
       echo "                    it runs so any changes to the code will not be refelected in the gdb session)."
-      echo "  reveler package   Ths will package up your project without having to specify the path"
+      echo "  reveler package   This will package up your project without having to specify the path"
+      echo "  reveler sub       iterate through the src and add in all the submodules automatically"
       echo "  reveler version   Displays version Number."
       echo ""
       echo "Example:"
@@ -142,10 +148,7 @@ reveler () {
     "init" ) gob init;;
     "sub" ) gob sub;;
     "new" | "n")
-      gob new $2 && cd $2
-      echo "Getting revel"
-      go get github.com/robfig/revel/revel || { echo 'go get failed' ; return 1; }
-      revel new $2 && cd src/$2
+      gob new $2 && cd $2 && echo "Getting revel" && (go get github.com/robfig/revel/revel || { echo 'go get failed' ; return 1; }) && revel new $2 && cd src/$2
       ;;
     "run" | "r" | "server" | "s" )
       # run a revel app from the goproj root

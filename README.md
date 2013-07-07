@@ -51,6 +51,7 @@ Use:
   gob help     Show this message
   gob init     Create a .goproj file in the pwd, marking it as the root of a project.
   gob new,n    Creates a new directory with a .goproj and .gitignore file in it.
+  gob sub      iterate through the src and add in all the submodules automatically
   gob version  Displays version Number.
 
 Example:
@@ -70,6 +71,7 @@ Use:
   reveler debug,d   Will open a gdb console with the project running (NOTE: This builds before 
                     it runs so any changes to the code will not be refelected in the gdb session).
   reveler package   Ths will package up your project without having to specify the path
+  reveler sub       iterate through the src and add in all the submodules automatically
   reveler version   Displays version Number.
 
 Example:
