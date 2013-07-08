@@ -93,12 +93,19 @@ gob (){
     "sub" )
       if [ "x$GOPROJ_PATH" = "x" ]; then
         echo "Oops. You are not in a project directory"
-      else
+      else  
+        local before_path="$PWD"
         for i in $(ls -d $GOPATH/src/**/); do
           if [ -d "$i".git ]; then
-            git submodule add $i $i
+            cd $i
+            local remote="$(git config --get remote.origin.url)" 
+            cd $GOPATH
+            echo "$remote"
+            echo ".${i#$GOPATH}"
+            git submodule add $remote ".${i#$GOPATH}"
           fi
         done
+        cd $before_path
       fi
       ;;
     "version" ) echo $GOB_VERSION;;
