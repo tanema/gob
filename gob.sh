@@ -100,8 +100,6 @@ gob (){
             cd $i
             local remote="$(git config --get remote.origin.url)" 
             cd $GOPATH
-            echo "$remote"
-            echo ".${i#$GOPATH}"
             git submodule add $remote ".${i#$GOPATH}"
           fi
         done
