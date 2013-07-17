@@ -63,16 +63,17 @@ Example:
 Reveler
 
 Use:
-  reveler help      Show this message
-  reveler init      Create a .goproj file in the pwd, marking it as the root of a project.
-  reveler new,n     Creates a new directory with a .goproj and .gitignore file in it.
-                    It then gets revel and builds it.
-  reveler run,r     Will run the revel project.
-  reveler debug,d   Will open a gdb console with the project running (NOTE: This builds before 
-                    it runs so any changes to the code will not be refelected in the gdb session).
-  reveler package   Ths will package up your project without having to specify the path
-  reveler sub       Iterate through source and add as submodules
-  reveler version   Displays version Number.
+  reveler help            Show this message
+  reveler init            Create a .goproj file in the pwd, marking it as the root of a project.
+  reveler new,n name      Creates a new directory with a .goproj and .gitignore file in it.
+                          It then gets revel and builds it.
+  reveler run,r [env]     Will run the revel project with an optional environment
+  reveler debug,d         Will open a gdb console with the project running (NOTE: This builds before 
+                          it runs so any changes to the code will not be refelected in the gdb session).
+  reveler package         This will package up your project without having to specify the path
+  reveler build,b target  This will build your project without having to specify the path
+  reveler sub             Iterate through source and add as submodules
+  reveler version         Displays version Number.
 
 Example:
   reveler init

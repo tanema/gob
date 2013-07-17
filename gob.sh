@@ -3,7 +3,7 @@
 # To use, source this file from your bash profile
 #
 # Implemented by Tim Anema <timanema@gmail.com>
-GOB_VERSION="0.1.1"
+GOB_VERSION="0.1.2"
 
 # Auto detect the GOB_DIR
 if [ ! -d "$GOB_DIR" ]; then
@@ -134,16 +134,17 @@ reveler () {
       echo "Reveler"
       echo ""
       echo "Use:"
-      echo "  reveler help      Show this message"
-      echo "  reveler init      Create a .goproj file in the pwd, marking it as the root of a project."
-      echo "  reveler new,n     Creates a new directory with a .goproj and .gitignore file in it."
-      echo "                    It then gets revel and builds it."
-      echo "  reveler run,r     Will run the revel project."
-      echo "  reveler debug,d   Will build the app and open a gdb console with the project running (NOTE: This builds before"
-      echo "                    it runs so any changes to the code will not be refelected in the gdb session)."
-      echo "  reveler package   This will package up your project without having to specify the path"
-      echo "  reveler sub       iterate through the src and add in all the submodules automatically"
-      echo "  reveler version   Displays version Number."
+      echo "  reveler help          Show this message"
+      echo "  reveler init          Create a .goproj file in the pwd, marking it as the root of a project."
+      echo "  reveler new,n name    Creates a new directory with a .goproj and .gitignore file in it."
+      echo "                        It then gets revel and builds it."
+      echo "  reveler run,r [env]   Will run the revel project. with a optional environment"
+      echo "  reveler debug,d       Will build the app and open a gdb console with the project running (NOTE: This builds before"
+      echo "                        it runs so any changes to the code will not be refelected in the gdb session)."
+      echo "  reveler package       This will package up your project without having to specify the path"
+      echo "  reveler build,b target This will build your project without having to specify the path"
+      echo "  reveler sub           iterate through the src and add in all the submodules automatically"
+      echo "  reveler version       Displays version Number."
       echo ""
       echo "Example:"
       echo "  reveler init"
@@ -160,7 +161,7 @@ reveler () {
       if [ "x$GOPROJ_PATH" = "x" ]; then
         echo "Oops, you are not in a project directory"
       else
-        revel run ${GOPROJ_PATH##*/}
+        revel run ${GOPROJ_PATH##*/} $2
       fi
       ;;
     "package" | "p" )
@@ -169,6 +170,18 @@ reveler () {
         echo "Oops, you are not in a project directory"
       else
         revel package ${GOPROJ_PATH##*/}
+      fi
+      ;;
+    "build" | "b" )
+      # run a revel app from the goproj root
+      if [ "x$GOPROJ_PATH" = "x" ]; then
+        echo "Oops, you are not in a project directory"
+      else
+        if [ "x$2" = "x" ]; then
+          echo "build requires a target" && return 1
+        else
+          revel build ${GOPROJ_PATH##*/} $2
+        fi
       fi
       ;;
     "debug" | "d" |"console" | "c" )
