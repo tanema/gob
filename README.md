@@ -15,7 +15,7 @@ Reveler will do all that and more. It will create a new project, get revel, buil
 
 Installation
 ------------
-*prerequisites: Go is installed, GOROOT is set, and GOPATH is not set.*
+*prerequisites: Go is installed and GOPATH is not set.*
 
 1. Clone the repository
 
