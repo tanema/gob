@@ -40,7 +40,7 @@ cd ../.. && rm -rf test
 
 printf "gob new should create a new directory with a .goproj and .gitignore file in it. ..."
 gob new test &> /dev/null && cd test
-if [ -f ".goproj" ] && [ -f ".gitignore" ]; then
+if [ -f ".goproj" ] && [ -f ".gitignore" ] && [ -d "src/test" ]; then
   echo "${green}Passed${end_c}"
 else
   echo "${red}Failed${end_c}"

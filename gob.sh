@@ -84,7 +84,7 @@ gob (){
           echo "new requires a name"
           return 1
         else
-          mkdir $2 && touch $2/.goproj && cp $GOB_DIR/Go.gitignore $2/.gitignore && echo "Created $2"
+          mkdir $2 && touch $2/.goproj && cp $GOB_DIR/Go.gitignore $2/.gitignore && echo "Created $2" && mkdir $2/src && mkdir $2/src/$2
         fi
       else
         echo "Cannot (or will not) make a go project inside another go project"
@@ -154,7 +154,7 @@ reveler () {
     "init" ) gob init;;
     "sub" ) gob sub;;
     "new" | "n")
-      gob new $2 && cd $2 && echo "Getting revel" && (go get github.com/robfig/revel/revel || { echo 'go get failed' ; return 1; }) && revel new $2 && cd src/$2
+      mkdir $2 && touch $2/.goproj && cp $GOB_DIR/Go.gitignore $2/.gitignore && cd $2 && echo "Getting revel" && (go get github.com/robfig/revel/revel || { echo 'go get failed' ; return 1; }) && revel new $2 && cd src/$2
       ;;
     "run" | "r" | "server" | "s" )
       # run a revel app from the goproj root
