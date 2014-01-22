@@ -1,3 +1,6 @@
+Probably not the greatest this was a test on submodule approach to package managment for go and I have been using it a while and at best it has been clunky. Do not recommend.
+============================
+
 ![Gob Bluth](http://i.imgur.com/xyvffqA.jpg)
 
 > Gob: You know, I sorta thought my contribution... could be a magic show! 
